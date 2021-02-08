@@ -1,0 +1,41 @@
+{% extends 'seller_header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% if msg %}
+		{{msg}}
+	{% endif %}
+<div class="row"> 
+		<div id="box" class="col-sm-3" style="margin-top: 10px;">
+			<div class="container">
+		  		<div class="card" style="width:450px">
+		    		<img class="card-img-top" src="{{product.product_image.url}}" alt="Card image" width=450px height=450px>
+		    			
+		  		</div>	  
+			</div>
+		</div>
+		<div id="box" class="col-sm-3" style="margin-top: 150px;margin-left: 150px;">
+			<div class="container">
+		  		<div class="card" style="width:450px">
+		    		
+		    			<div class="card-body">
+		      				<p class="card-text">Product Category : {{product.product_category}}</p><br>
+		      				<p class="card-text">Product Size : {{product.product_size}}</p><br>
+		      				<p class="card-title">Product Name : {{product.product_name}}</p><br>
+		      				<p class="card-text">Product Price : {{product.product_price}}</p><br>
+		      				<p class="card-text">Product Desc : {{product.product_desc}}</p><br>
+
+		      				<a href="{% url 'seller_edit_product' pk=product.pk %}"><input type="button" value="Edit Product" class="btn btn-danger"></a>
+		      				<a href="{% url 'seller_delete_product' pk=product.pk %}"><input type="button" value="Delete Product" class="btn btn-danger"></a>
+		    			</div>
+		  		</div>	  
+			</div>
+		</div> 
+</div>
+</body>
+</html>
+{% endblock %}

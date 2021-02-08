@@ -1,0 +1,120 @@
+{% extends 'seller_header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function checkEmail()
+		{
+			
+			var e="{{msg1}}";
+			alert(e);
+			if(e!="")
+			{
+				document.getElementById("email").style.backgroundColor="red";
+			}
+		}
+	</script>
+</head>
+<body>
+<center>
+	<h1>Edit Product</h1>
+	{% if msg %}
+		<b style="color: red;">{{msg}}</b>
+	{% endif %}
+	{% if msg1 %}
+		<b style="color: red;">{{msg1}}</b>
+		<script type="text/javascript">
+		
+			
+			var e="{{msg1}}";
+			alert(e);
+			if(e!="")
+			{
+				document.frm.email.style.borderColor="red";
+			}
+		
+	</script>
+	{% endif %}
+	<form name="add_product" method="post" action="{% url 'seller_edit_product' pk=product.pk %}" enctype="multipart/form-data">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Product Category</td>
+				<td>
+					<input type="text" name="product_category" value="{{product.product_category}}" readonly="readonly">
+				</td>
+			</tr>
+			<tr>
+				<td>Product Size</td>
+				<td>
+					<select name="product_size">
+						{% if product.product_size == "s" %}
+							<option>---Select Size---</option>
+							<option value="s" selected="selected">S</option>
+							<option value="m">M</option>
+							<option value="l">L</option>
+							<option value="xl">XL</option>
+							<option value="xxl">XXL</option>
+						{% elif product.product_size == "m" %}
+							<option value="s">S</option>
+							<option value="m" selected="selected">M</option>
+							<option value="l">L</option>
+							<option value="xl">XL</option>
+							<option value="xxl">XXL</option>
+						{% elif product.product_size == "l" %}
+							<option value="s">S</option>
+							<option value="m">M</option>
+							<option value="l" selected="selected">L</option>
+							<option value="xl">XL</option>
+							<option value="xxl">XXL</option>
+						{% elif product.product_size == "xl" %}
+							<option value="s">S</option>
+							<option value="m">M</option>
+							<option value="l">L</option>
+							<option value="xl" selected="selected">XL</option>
+							<option value="xxl">XXL</option>
+						{% elif product.product_size == "xxl" %}
+							<option value="s">S</option>
+							<option value="m">M</option>
+							<option value="l">L</option>
+							<option value="xl">XL</option>
+							<option value="xxl" selected="selected">XXL</option>
+						{% endif %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Product Name</td>
+				<td><input type="text" name="product_name" required="required" value="{{product.product_name}}"></td>
+			</tr>
+			<tr>
+				<td>Product Price</td>
+				<td><input type="text" name="product_price" required="required" value="{{product.product_price}}"></td>
+			</tr>
+			<tr>
+				<td>Product Description</td>
+				<td><textarea cols="22" rows="2" name="product_desc" required="required">{{product.product_desc}}</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<img src="{{product.product_image.url}}" width="200px" height="200px">
+				</td>
+			</tr>
+			<tr>
+				<td>Product Image</td>
+				<td><input type="file" name="product_image"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="Update Product" class="btn btn-primary">
+				</td>
+			</tr>
+			
+		</table>
+	</form>
+</center>
+</body>
+</html>
+{% endblock %}

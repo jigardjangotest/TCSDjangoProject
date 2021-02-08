@@ -1,0 +1,43 @@
+{% extends 'header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<center>
+	<h1>Login</h1>
+	{% if msg %}
+		<b style="color: red;">{{msg}}</b>
+	{% endif %}
+	<form name="login" method="post" action="{% url 'login' %}">
+		{% csrf_token %}
+		<table>
+			
+			<tr>
+				<td>Email</td>
+				<td><input type="text" name="email" required="required"></td>
+			</tr>
+			
+			<tr>
+				<td>Password</td>
+				<td><input type="password" name="password"  required="required"></td>
+			</tr>
+			
+			<tr>
+				<td><input type="submit" value="Login" class="btn btn-primary"></td>
+				<td align="center"><a href="{% url 'forgot_password' %}"><input type="button" value="Forgot Password" class="btn btn-primary"></a></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<b>Still Not Registered? Click Here To <a href="{% url 'signup' %}"> Signup </a></b>
+				</td>
+			</tr>
+		</table>
+	</form>
+</center>
+
+</body>
+</html>
+{% endblock %}

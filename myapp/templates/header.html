@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <style type="text/css">
+      tr,td{
+
+        padding: 10px;
+      }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Cloth Shop</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'user_view_product' pn='kids' %}">Kids</a></li>
+          <li><a href="{% url 'user_view_product' pn='women' %}">Women</a></li>
+          <li><a href="{% url 'user_view_product' pn='men' %}">Men</a></li>
+        </ul>
+      </li>
+      <li><a href="{% url 'contact' %}">Contact</a></li>
+    </ul>
+    {% if request.session.email %}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'cart' %}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart({{request.session.cart}})</a></li>
+        <li><a href="{% url 'wishlist' %}"><span class="glyphicon glyphicon-heart"></span> Wishlist({{request.session.wishlist}})</a></li>
+         <li><a href="{% url 'change_password' %}"><span class="glyphicon glyphicon-edit"></span> Change Password</a></li>
+        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-user"></span> Logout {{request.session.fname}}</a></li>
+      </ul>
+    {% else %}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    {% endif %}
+    
+  </div>
+</nav>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

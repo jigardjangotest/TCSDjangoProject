@@ -1,0 +1,28 @@
+{% extends 'header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<div class="row">
+	{% for i in wishlists %}	 	 
+		<div id="box" class="col-sm-3" style="margin-top: 10px;">
+			<div class="container">
+		  		<div class="card" style="width:250px">
+		    		<img class="card-img-top" src="{{i.product.product_image.url}}" alt="Card image" width=250px height=250px>
+		    			<div class="card-body">
+		      				<p class="card-title">Product Name : {{i.product.product_name}}</p>
+		      				<p class="card-text">Product Price : {{i.product.product_price}}</p>
+		      				<a href="{% url 'user_product_detail' pk=i.product.pk %}"><input type="button" value="More Details" class="btn btn-danger"></a>
+		    			</div>
+		  		</div>	  
+			</div>
+		</div> 
+	{% endfor %}
+</div>
+</body>
+</html>
+{% endblock %}
